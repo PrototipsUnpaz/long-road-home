@@ -1,19 +1,19 @@
-extends KinematicBody2D
+extends RigidBody2D
 
-const SPEED = 300
+#var engine_power = 800  # Forward acceleration force.
+#var acceleration = Vector2.ZERO
+export (int) var SPEED = -100
 var velocity = Vector2()
-
-func _physics_process(delta):
-	if Input.is_action_just_released("ui_down") or Input.is_action_just_released("ui_up") or Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
-		velocity.x = 0
-		velocity.y = 0
-	if Input.is_action_pressed("ui_left"):
-		velocity.x = -SPEED
-	if Input.is_action_pressed("ui_right"):
-		velocity.x = SPEED
-	if Input.is_action_pressed("ui_up"):
-		velocity.y = -SPEED
-	if Input.is_action_pressed("ui_down"):
-		velocity.y = SPEED
-	move_and_slide(velocity)
+var target = Vector2()
+#func _input(event):
+	#if event.is_action_pressed("Touch"):
+		#target = get_global_mouse_position()
+func _process(delta):
+	velocity.y = SPEED
 	pass
+#func _physics_process(delta):
+	#velocity = position.direction_to(target) * SPEED
+	#look_at(target)
+	#if position.distance_to(target) > 5:
+	#	velocity = move_and_slide(velocity)
+	#pass
